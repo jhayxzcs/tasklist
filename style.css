@@ -810,18 +810,31 @@ body {
 .toast.danger { border-color: rgba(248, 113, 113, 0.4); }
 
 @media (max-width: 720px) {
+  .app {
+    padding: 20px 16px 90px;
+  }
   .dashboard {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .modal {
+    max-width: 90vw;
   }
 }
 
 @media (max-width: 520px) {
   .header {
     flex-direction: column;
+    padding: 18px;
   }
   .header-right {
     width: 100%;
     justify-content: space-between;
+  }
+  .greeting {
+    font-size: 20px;
+  }
+  .quote {
+    max-width: 100%;
   }
   .form-row {
     flex-direction: column;
@@ -833,5 +846,58 @@ body {
   .sort-wrapper,
   .sort-current {
     width: 100%;
+  }
+  .sort-dropdown {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  .mood-dropdown {
+    width: min(200px, calc(100vw - 60px));
+  }
+  .stat-card {
+    padding: 14px;
+  }
+  .stat-value {
+    font-size: 21px;
+  }
+  .task-card {
+    padding: 14px;
+    gap: 10px;
+  }
+  .task-title {
+    font-size: 14px;
+  }
+  .task-actions button {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+  .modal {
+    padding: 18px;
+  }
+  .fab {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .task-meta {
+    gap: 6px;
+  }
+  .tag {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+  .task-actions {
+    flex-direction: column;
   }
 }
