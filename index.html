@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Tasks</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app" id="app">
+
+
+  <header class="header card">
+    <div class="header-left">
+
+      <div class="mood-wrapper">
+        <button class="mood-current" id="mood-current" title="Set your mood">😊</button>
+        <div class="mood-dropdown" id="mood-dropdown">
+          <button class="mood-option" data-mood="😊" data-label="Happy">😊<span>Happy</span></button>
+          <button class="mood-option" data-mood="😄" data-label="Excited">😄<span>Excited</span></button>
+          <button class="mood-option" data-mood="❤️" data-label="In Love">❤️<span>In Love</span></button>
+          <button class="mood-option" data-mood="😎" data-label="Motivated">😎<span>Motivated</span></button>
+          <button class="mood-option" data-mood="😢" data-label="Sad">😢<span>Sad</span></button>
+          <button class="mood-option" data-mood="😴" data-label="Sleepy">😴<span>Sleepy</span></button>
+          <button class="mood-option" data-mood="😡" data-label="Stressed">😡<span>Stressed</span></button>
+          <button class="mood-option" data-mood="🤩" data-label="Inspired">🤩<span>Inspired</span></button>
+        </div>
+      </div>
+
+      <div class="greeting-block">
+        <h1 class="greeting">
+          Hi, <span class="editable-name" id="user-name" contenteditable="true" spellcheck="false">Jhay</span> 👋
+        </h1>
+        <p class="quote editable-quote" id="user-quote" contenteditable="true" spellcheck="false">Click here to write your status...</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="clock-block">
+        <span id="clock-day">Saturday</span>
+        <span id="clock-date">July 18, 2026</span>
+        <span id="clock-time" class="clock-time">10:45:32 PM</span>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="dashboard">
+    <div class="stat-card card">
+      <span class="stat-value" id="stat-total">0</span>
+      <span class="stat-label">Total Tasks</span>
+    </div>
+    <div class="stat-card card">
+      <span class="stat-value" id="stat-completed">0</span>
+      <span class="stat-label">Completed</span>
+    </div>
+    <div class="stat-card card">
+      <span class="stat-value" id="stat-pending">0</span>
+      <span class="stat-label">Pending</span>
+    </div>
+    <div class="stat-card card progress-card">
+      <svg class="progress-ring" width="70" height="70">
+        <circle class="progress-ring-bg" cx="35" cy="35" r="30"></circle>
+        <circle class="progress-ring-fill" id="progress-ring-fill" cx="35" cy="35" r="30"></circle>
+      </svg>
+      <span class="progress-ring-text" id="progress-percent">0%</span>
+      <span class="stat-label">Complete</span>
+    </div>
+  </section>
+
+
+  <section class="controls card">
+    <input type="text" id="search-input" class="search-input" placeholder="Search tasks..." />
+
+    <div class="filter-row">
+      <div class="filter-chips" id="filter-chips">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="active">Active</button>
+        <button class="chip" data-filter="completed">Completed</button>
+        <button class="chip" data-filter="today">Today</button>
+        <button class="chip" data-filter="high">High Priority</button>
+      </div>
+
+      <select id="sort-select" class="sort-select">
+        <option value="dueDate">Sort by Due Date</option>
+        <option value="priority">Sort by Priority</option>
+      </select>
+    </div>
+  </section>
+
+
+  <section class="task-list" id="task-list">
+
+  </section>
+
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">🗒️</div>
+    <p>No tasks here yet</p>
+    <span>Add a task to get started</span>
+  </div>
+
+
+  <button class="fab" id="fab-add" title="Add task">+</button>
+
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal card">
+    <div class="modal-header">
+      <h2 id="modal-title">Add Task</h2>
+      <button class="icon-btn" id="modal-close">✕</button>
+    </div>
+
+    <form id="task-form">
+      <label>Title</label>
+      <input type="text" id="task-title" placeholder="e.g. Finish homework" required />
+
+      <label>Description</label>
+      <textarea id="task-description" placeholder="Optional details..." rows="3"></textarea>
+
+      <div class="form-row">
+        <div class="form-col">
+          <label>Category</label>
+          <input type="text" id="task-category" placeholder="e.g. Work" />
+        </div>
+        <div class="form-col">
+          <label>Priority</label>
+          <select id="task-priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-col">
+          <label>Due Date</label>
+          <input type="date" id="task-date" />
+        </div>
+        <div class="form-col">
+          <label>Due Time</label>
+          <input type="time" id="task-time" />
+        </div>
+      </div>
+
+      <label>Color Tag</label>
+      <div class="color-picker" id="color-picker">
+        <button type="button" class="color-dot" data-color="#a78bfa" style="background:#a78bfa"></button>
+        <button type="button" class="color-dot" data-color="#f472b6" style="background:#f472b6"></button>
+        <button type="button" class="color-dot" data-color="#60a5fa" style="background:#60a5fa"></button>
+        <button type="button" class="color-dot" data-color="#34d399" style="background:#34d399"></button>
+        <button type="button" class="color-dot" data-color="#fbbf24" style="background:#fbbf24"></button>
+        <button type="button" class="color-dot" data-color="#f87171" style="background:#f87171"></button>
+      </div>
+
+      <input type="hidden" id="task-id" />
+
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="modal-cancel">Cancel</button>
+        <button type="submit" class="btn-primary">Save Task</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="confirm-overlay">
+  <div class="modal confirm-modal card">
+    <p>Delete this task? This can't be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="confirm-cancel">Cancel</button>
+       <button class="btn-danger" id="confirm-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
