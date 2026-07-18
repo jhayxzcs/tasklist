@@ -16,7 +16,8 @@ const taskListEl = document.getElementById("task-list");
 const emptyStateEl = document.getElementById("empty-state");
 const searchInput = document.getElementById("search-input");
 const filterChips = document.getElementById("filter-chips");
-const sortSelect = document.getElementById("sort-select");
+const sortCurrent = document.getElementById("sort-current");
+const sortDropdown = document.getElementById("sort-dropdown");
 
 const modalOverlay = document.getElementById("modal-overlay");
 const modalTitle = document.getElementById("modal-title");
@@ -433,10 +434,23 @@ filterChips.addEventListener("click", (e) => {
   renderTasks();
 });
 
-sortSelect.addEventListener("change", (e) => {
-  currentSort = e.target.value;
-  renderTasks();
+sortCurrent.addEventListener("click", (e) => {
+  e.stopPropagation();
+  sortDropdown.classList.toggle("open");
 });
+
+document.querySelectorAll(".sort-option").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    currentSort = btn.dataset.sort;
+    sortCurrent.textContent = btn.textContent;
+    document.querySelectorAll(".sort-option").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    sortDropdown.classList.remove("open");
+    renderTasks();
+  });
+});
+
+document.addEventListener("click", () => sortDropdown.classList.remove("open"));
 
 setSelectedColorDot();
 renderTasks();

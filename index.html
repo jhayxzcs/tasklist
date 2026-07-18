@@ -82,10 +82,13 @@
         <button class="chip" data-filter="high">High Priority</button>
       </div>
 
-      <select id="sort-select" class="sort-select">
-        <option value="dueDate">Sort by Due Date</option>
-        <option value="priority">Sort by Priority</option>
-      </select>
+      <div class="sort-wrapper" id="sort-wrapper">
+        <button class="sort-current" id="sort-current">Sort by Due Date</button>
+        <div class="sort-dropdown" id="sort-dropdown">
+          <button class="sort-option active" data-sort="dueDate">Sort by Due Date</button>
+          <button class="sort-option" data-sort="priority">Sort by Priority</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -170,7 +173,7 @@
     <p>Delete this task? This can't be undone.</p>
     <div class="modal-actions">
       <button class="btn-secondary" id="confirm-cancel">Cancel</button>
-       <button class="btn-danger" id="confirm-delete">Delete</button>
+      <button class="btn-danger" id="confirm-delete">Delete</button>
     </div>
   </div>
 </div>
