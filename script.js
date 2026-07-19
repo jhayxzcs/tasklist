@@ -454,3 +454,13 @@ document.addEventListener("click", () => sortDropdown.classList.remove("open"));
 
 setSelectedColorDot();
 renderTasks();
+
+const preloader = document.getElementById("preloader");
+const appEl = document.getElementById("app");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    preloader.classList.add("hidden");
+    appEl.classList.add("revealed");
+  }, 500);
+});
