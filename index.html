@@ -133,11 +133,15 @@
         </div>
         <div class="form-col">
           <label>Priority</label>
-          <select id="task-priority">
-            <option value="low">Low</option>
-            <option value="medium" selected>Medium</option>
-            <option value="high">High</option>
-          </select>
+          <div class="priority-wrapper" id="priority-wrapper">
+            <button type="button" class="priority-current" id="priority-current">Medium</button>
+            <div class="priority-dropdown" id="priority-dropdown">
+              <button type="button" class="priority-option" data-priority="low">Low</button>
+              <button type="button" class="priority-option active" data-priority="medium">Medium</button>
+              <button type="button" class="priority-option" data-priority="high">High</button>
+            </div>
+          </div>
+          <input type="hidden" id="task-priority" value="medium" />
         </div>
       </div>
 

@@ -264,10 +264,34 @@ const titleInput = document.getElementById("task-title");
 const descInput = document.getElementById("task-description");
 const categoryInput = document.getElementById("task-category");
 const priorityInput = document.getElementById("task-priority");
+const priorityCurrent = document.getElementById("priority-current");
+const priorityDropdown = document.getElementById("priority-dropdown");
 const dateInput = document.getElementById("task-date");
 const timeInput = document.getElementById("task-time");
 const idInput = document.getElementById("task-id");
 const colorPicker = document.getElementById("color-picker");
+
+function setPriority(value) {
+  priorityInput.value = value;
+  const option = document.querySelector(`.priority-option[data-priority="${value}"]`);
+  priorityCurrent.textContent = option ? option.textContent : value;
+  document.querySelectorAll(".priority-option").forEach((b) => b.classList.remove("active"));
+  if (option) option.classList.add("active");
+}
+
+priorityCurrent.addEventListener("click", (e) => {
+  e.stopPropagation();
+  priorityDropdown.classList.toggle("open");
+});
+
+document.querySelectorAll(".priority-option").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    setPriority(btn.dataset.priority);
+    priorityDropdown.classList.remove("open");
+  });
+});
+
+document.addEventListener("click", () => priorityDropdown.classList.remove("open"));
 
 function openAddModal() {
   taskForm.reset();
@@ -275,6 +299,7 @@ function openAddModal() {
   modalTitle.textContent = "Add Task";
   selectedColor = "#a78bfa";
   setSelectedColorDot();
+  setPriority("medium");
   modalOverlay.classList.add("open");
   setTimeout(() => titleInput.focus(), 50);
 }
@@ -287,7 +312,7 @@ function openEditModal(id) {
   titleInput.value = task.title;
   descInput.value = task.description;
   categoryInput.value = task.category;
-  priorityInput.value = task.priority;
+  setPriority(task.priority);
   dateInput.value = task.dueDate;
   timeInput.value = task.dueTime;
   selectedColor = task.color;
@@ -462,5 +487,5 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     preloader.classList.add("hidden");
     appEl.classList.add("revealed");
-  }, 500);
+  }, 350);
 });

@@ -623,7 +623,7 @@ body {
 
 .empty-state.show {
   display: flex;
-  animation: pageFadeIn 0.7s ease;
+  animation: pageFadeIn 0.4s ease;
 }
 
 .empty-icon {
@@ -718,8 +718,7 @@ body {
 #task-form input[type="text"],
 #task-form input[type="date"],
 #task-form input[type="time"],
-#task-form textarea,
-#task-form select {
+#task-form textarea {
   width: 100%;
   padding: 10px 12px;
   border-radius: 10px;
@@ -733,9 +732,70 @@ body {
 }
 
 #task-form input:focus,
-#task-form textarea:focus,
-#task-form select:focus {
+#task-form textarea:focus {
   border-color: var(--accent-purple);
+}
+
+.priority-wrapper {
+  position: relative;
+}
+
+.priority-current {
+  width: 100%;
+  text-align: left;
+  background: #1a1424;
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.priority-current:hover {
+  background: #241d30;
+}
+
+.priority-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #1a1424;
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  padding: 6px;
+  z-index: 30;
+  box-shadow: var(--shadow);
+}
+
+.priority-dropdown.open {
+  display: block;
+  animation: popIn 0.18s ease;
+}
+
+.priority-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  padding: 8px 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.priority-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.priority-option.active {
+  color: var(--accent-purple);
+  font-weight: 600;
 }
 
 .form-row {
